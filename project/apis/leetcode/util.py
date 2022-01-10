@@ -1,6 +1,6 @@
 import requests
 
-base_url = f"https://leetcode.com/graphql"
+base_url = "https://leetcode.com/graphql"
 
 
 def get_info(username):

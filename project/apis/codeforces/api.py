@@ -4,30 +4,34 @@ from project.apis.codeforces.utils import get_info
 
 codeforces_namespace = Namespace("Codeforces")
 
-# leetcode_unit_response = codeforces_namespace.model(
-#     "unit", {"count": fields.Integer, "submissions": fields.Integer}
-# )
-
-# leetcode_response = leetcode_namespace.model(
-#     "response",
-#     {
-#         "message": fields.String,
-#         "All": fields.Nested(leetcode_unit_response),
-#         "Easy": fields.Nested(leetcode_unit_response),
-#         "Medium": fields.Nested(leetcode_unit_response),
-#         "Hard": fields.Nested(leetcode_unit_response),
-#     },
-# )
+codeforces_response = codeforces_namespace.model(
+    "response",
+    {
+        "message": fields.String,
+        "rating": fields.Integer,
+        "max_rating": fields.Integer,
+        "rank": fields.String,
+        "rank_color": fields.String,
+        "max_rank": fields.String,
+        "max_rank_color": fields.String,
+        "contribution": fields.Integer,
+        "solved": fields.Integer,
+    },
+)
 
 
 class CodeforcesInfo(Resource):
-    # @leetcode_namespace.marshal_with(leetcode_response)
-    # @leetcode_namespace.response(200, "Successfull")
+    @codeforces_namespace.marshal_with(codeforces_response)
+    @codeforces_namespace.response(200, "Successfull")
+    @codeforces_namespace.response(400, "Operation error")
     def get(self, username):
-        resp = get_info(username)
-        # print(resp)
-        response_object = {"message": "Successfull", **resp}
-        return response_object, 200
+        try:
+            resp = get_info(username)
+            response_object = {"message": "Successfull", **resp}
+            return response_object, 200
+        except Exception as e:
+            print(e)
+            codeforces_namespace.abort(400, "Operation error")
 
 
 codeforces_namespace.add_resource(
