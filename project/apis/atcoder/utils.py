@@ -14,7 +14,7 @@ def get_solve(user_id):
         current_rating = data[1].find("span").text
         highest_rating = data[2].find("span").text
         participated = data[3].text
-        print(current_rating, highest_rating, participated)
+        # print(current_rating, highest_rating, participated)
         return (current_rating, highest_rating, participated)
     except Exception as e:
         print(e)

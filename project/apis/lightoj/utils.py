@@ -11,8 +11,8 @@ def get_solve(user_id):
         soup = BeautifulSoup(resp.text, "html.parser")
         solved = soup.find("div", {"class": "like-count"})
         follow = soup.find("div", {"class": "follow-count"})
-        print(solved.span.text)
-        print(follow.span.text)
+        # print(solved.span.text)
+        # print(follow.span.text)
         return (solved.span.text, follow.span.text)
     except Exception as e:
         print(e)

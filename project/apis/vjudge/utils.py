@@ -11,8 +11,8 @@ def get_solve(user_id):
         soup = BeautifulSoup(resp.text, "html.parser")
         solved = soup.find("a", {"title": "Overall solved"})
         attempt = soup.find("a", {"title": "Overall attempted"})
-        print(solved.text)
-        print(attempt.text)
+        # print(solved.text)
+        # print(attempt.text)
         return (solved.text, attempt.text)
     except Exception as e:
         print(e)
