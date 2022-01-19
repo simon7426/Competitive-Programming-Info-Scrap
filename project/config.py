@@ -4,7 +4,7 @@ import os
 class BaseConfig:
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = "my_precious"
+    SECRET_KEY = os.getenv("SECRET_KEY", "my_precious")
 
 
 class DevelopmentConfig(BaseConfig):
@@ -17,4 +17,4 @@ class TestingConfig(BaseConfig):
 
 
 class ProductionConfig(BaseConfig):
-    SECRET_KEY = os.getenv("SECRET_KEY", "my_precious")
+    SECRET_KEY = os.getenv("SECRET_KEY")
