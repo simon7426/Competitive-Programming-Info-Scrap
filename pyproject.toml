@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "fetch_cp_websites"
+version = "0.1.0"
+description = "A flask server to fetch public informations from various competitive programming websites."
+authors = ["simon.islam <simon.islam@brilliant.com.bd>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Flask = "^2.0.2"
+Flask-Cors = "^3.0.10"
+flask-restx = "^0.5.1"
+gunicorn = "^20.1.0"
+requests = "^2.27.1"
+beautifulsoup4 = "^4.10.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+black = "^21.12b0"
+isort = "^5.10.1"
+flake8 = "^4.0.1"
+bandit = "^1.7.1"
+safety = "^1.10.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
