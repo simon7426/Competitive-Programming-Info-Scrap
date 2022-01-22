@@ -1,9 +1,11 @@
 import os
 
 from flask import Flask
+from flask_caching import Cache
 from flask_cors import CORS
 
 cors = CORS()
+cache = Cache()
 
 
 def create_app():
@@ -13,6 +15,7 @@ def create_app():
     app.config.from_object(app_settings)
 
     cors.init_app(app)
+    cache.init_app(app)
 
     from project.apis import api
 
