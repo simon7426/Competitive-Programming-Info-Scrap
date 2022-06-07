@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from flask import current_app as app
 
 base_url = "https://spoj.com/users/"
 
@@ -14,5 +15,5 @@ def get_solve(user_id):
         # print(solved[1].text)
         return (solved[0].text, solved[1].text)
     except Exception as e:
-        print(e)
+        app.logger.info(e)
         return "fail"

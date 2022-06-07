@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from flask import current_app as app
 
 base_url = "https://atcoder.jp/users/"
 
@@ -17,5 +18,5 @@ def get_solve(user_id):
         # print(current_rating, highest_rating, participated)
         return (current_rating, highest_rating, participated)
     except Exception as e:
-        print(e)
+        app.logger.info(e)
         return "fail"

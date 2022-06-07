@@ -1,3 +1,4 @@
+from flask import current_app as app
 from flask_restx import Namespace, Resource, fields
 
 from project.apis.codeforces.utils import get_info
@@ -33,10 +34,12 @@ class CodeforcesInfo(Resource):
             set_redis_object(redis_key, response_object)
             return response_object, 200
         except Exception as e:
-            print(e)
+            app.logger.info(e)
             ret_obj = get_redis_object(redis_key)
             if ret_obj is not None:
-                print("***********Transfering From Cache*****************************")
+                app.logger.info(
+                    "***********Transfering From Cache*****************************"
+                )
                 return ret_obj, 200
             else:
                 codeforces_namespace.abort(400, "Operation error")

@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from flask import current_app as app
 
 base_url = "https://vjudge.net/user/"
 
@@ -15,5 +16,5 @@ def get_solve(user_id):
         # print(attempt.text)
         return (solved.text, attempt.text)
     except Exception as e:
-        print(e)
+        app.logger.info(e)
         return "fail"
