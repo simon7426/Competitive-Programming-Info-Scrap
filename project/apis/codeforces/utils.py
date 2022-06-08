@@ -1,4 +1,5 @@
 import requests
+from flask import current_app as app
 
 
 def get_color(rank):
@@ -46,5 +47,5 @@ def get_info(username):
             "solved": solvedCnt,
         }
     except Exception as e:
-        print(e)
+        app.logger.info(e)
         raise Exception

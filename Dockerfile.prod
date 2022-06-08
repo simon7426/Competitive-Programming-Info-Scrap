@@ -19,8 +19,8 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 
 
 # lint
+RUN pip install black==22.3.0 flake8===4.0.1 isort==5.10.1
 COPY . .
-RUN pip install black==21.11b1 flake8===4.0.1 isort==5.10.1
 RUN flake8 project
 RUN black project --check --quiet
 RUN isort project --check-only
@@ -56,5 +56,4 @@ RUN adduser --disabled-password myuser
 USER myuser
 
 # run gunicorn
-CMD gunicorn --workers 3 --bind 0.0.0.0:8000 manage:app
-
+CMD gunicorn manage:app --access-logfile '-'

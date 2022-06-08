@@ -1,3 +1,4 @@
+import logging
 import os
 
 from flask import Flask
@@ -10,6 +11,7 @@ cache = Cache()
 
 def create_app():
     app = Flask(__name__)
+    app.logger.setLevel(logging.INFO)
 
     app_settings = os.environ.get("APP_SETTINGS", "project.config.DevelopmentConfig")
     app.config.from_object(app_settings)

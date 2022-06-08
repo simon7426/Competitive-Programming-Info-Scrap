@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from flask import current_app as app
 
 base_url = "https://lightoj.com/user/"
 
@@ -15,5 +16,5 @@ def get_solve(user_id):
         # print(follow.span.text)
         return (solved.span.text, follow.span.text)
     except Exception as e:
-        print(e)
+        app.logger.info(e)
         return "fail"
